@@ -14,9 +14,10 @@ git status 1>/dev/null 2>/dev/null
 
 if [ ! -e ./QEMU-Nyx/.git ]; then
     rm -rf ./QEMU-Nyx
-    git clone https://github.com/nyx-fuzz/QEMU-Nyx.git || exit 1
+    git clone https://github.com/Crypt-iQ/QEMU-Nyx.git || exit 1
     pushd QEMU-Nyx
-    git reset --hard e5e1c4c21ff9c4dc80e6409d4eab47146c6024cd
+    git checkout 11232025/create_tmp_snapshot
+    git reset --hard 150f1071517bc45020d0730f9acf86216a76a382
     popd
 fi
 
