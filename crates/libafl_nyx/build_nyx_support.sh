@@ -17,7 +17,7 @@ if [ ! -e ./QEMU-Nyx/.git ]; then
     git clone https://github.com/Crypt-iQ/QEMU-Nyx.git || exit 1
     pushd QEMU-Nyx
     git checkout 11232025/create_tmp_snapshot
-    git reset --hard a97daddb9d910df5ad255c14e9993eb674ac4e58
+    git reset --hard 23e87a4a3c6ea2f828a1150aed5bebc05eae0e5f
     popd
 fi
 
