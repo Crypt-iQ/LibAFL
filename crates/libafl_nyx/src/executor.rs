@@ -19,6 +19,8 @@ use libnyx::NyxReturnValue;
 
 use crate::{cmplog::CMPLOG_ENABLED, helper::NyxHelper};
 
+use log;
+
 /// executor for nyx standalone mode
 pub struct NyxExecutor<S, OT> {
     /// implement nyx function
@@ -105,7 +107,10 @@ where
         // exec will take care of trace_bits, so no need to reset
         let exit_kind = match self.helper.nyx_process.exec() {
             NyxReturnValue::Normal => ExitKind::Ok,
-            NyxReturnValue::Crash | NyxReturnValue::Asan => ExitKind::Crash,
+            NyxReturnValue::Crash | NyxReturnValue::Asan => {
+                log::error!("run_target hit NyxReturnValue::Crash | NyxReturnValue::Asan");
+                ExitKind::Crash
+            },
             NyxReturnValue::Timeout => ExitKind::Timeout,
             NyxReturnValue::InvalidWriteToPayload => {
                 self.helper.nyx_process.shutdown();
