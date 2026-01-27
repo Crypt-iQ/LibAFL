@@ -111,7 +111,10 @@ where
                 log::error!("run_target hit NyxReturnValue::Crash | NyxReturnValue::Asan");
                 ExitKind::Crash
             },
-            NyxReturnValue::Timeout => ExitKind::Timeout,
+            NyxReturnValue::Timeout => {
+                log::error!("run_target hit NyxReturnValue::Timeout");
+                ExitKind::Timeout
+            },
             NyxReturnValue::InvalidWriteToPayload => {
                 self.helper.nyx_process.shutdown();
                 return Err(Error::illegal_state(
