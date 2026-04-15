@@ -3422,6 +3422,7 @@ dependencies = [
  "libafl_bolts",
  "libafl_targets",
  "libnyx",
+ "log",
  "nix 0.30.1",
  "regex",
  "serde",

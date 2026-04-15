@@ -45,3 +45,6 @@ serde = { workspace = true, default-features = false, features = [
 
 [lints]
 workspace = true
+
+[dependencies]
+log.workspace = true
