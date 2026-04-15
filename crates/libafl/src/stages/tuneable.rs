@@ -292,9 +292,12 @@ where
                 let iters = self
                     .iterations(state)?
                     .saturating_sub(self.execs_since_progress_start(state)? as usize);
+                log::info!("perform_mutational start");
                 for _ in 1..=iters {
+                    log::info!("perform_mutation before");
                     self.perform_mutation(fuzzer, executor, state, manager, &input)?;
                 }
+                log::info!("perform_mutational end");
             }
         }
         Ok(())
@@ -440,8 +443,10 @@ where
         mark_feature_time!(state, PerfFeature::Mutate);
 
         if mutated == MutationResult::Skipped {
+            log::info!("perform_mutation Skipped");
             return Ok(());
         }
+        log::info!("perform_mutation not Skipped");
 
         let (untransformed, post) = input.try_transform_into(state)?;
         let (_, corpus_id) = fuzzer.evaluate_filtered(state, executor, manager, &untransformed)?;
