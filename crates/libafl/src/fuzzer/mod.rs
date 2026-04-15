@@ -1320,6 +1320,7 @@ where
         mark_feature_time!(state, PerfFeature::PreExecObservers);
 
         start_timer!(state);
+        log::info!("execute_input called, before executor.run_target");
         let exit_kind = executor.run_target(self, state, event_mgr, input)?;
         mark_feature_time!(state, PerfFeature::TargetExecution);
 

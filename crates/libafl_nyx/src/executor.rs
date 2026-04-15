@@ -54,6 +54,7 @@ where
         _mgr: &mut EM,
         input: &I,
     ) -> Result<ExitKind, Error> {
+        log::info!("NyxExecutor::run_target start");
         *state.executions_mut() += 1;
 
         let bytes = input.target_bytes();
@@ -145,6 +146,7 @@ where
             }
         }
 
+        log::info!("NyxExecutor::run_target end {:?}", exit_kind);
         Ok(exit_kind)
     }
 }
